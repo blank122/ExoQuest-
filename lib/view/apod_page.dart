@@ -30,14 +30,40 @@ class _ApodPageState extends State<ApodPage> {
         }
 
         if (snapshot.hasError) {
-          return Text('naay error chuy bugo');
+          return Text('Error: ${snapshot.error}');
         }
 
         if (!snapshot.hasData) {
           return Text('no data ulols');
         }
-        return Text('ulos');
+        return buildApodScreen(snapshot.data!);
       },
+    );
+  }
+
+  Widget buildApodScreen(Apod apod) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(apod.title, style: Theme.of(context).textTheme.titleLarge),
+              const SizedBox(height: 10),
+              Text('Date: ${apod.date}'),
+              Text('By: ${apod.copyRight}'),
+              const SizedBox(height: 20),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(apod.url),
+              ),
+              const SizedBox(height: 20),
+              Text(apod.explanation, textAlign: TextAlign.justify),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

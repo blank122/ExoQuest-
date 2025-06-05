@@ -53,6 +53,6 @@ class Apod {
 
   @override
   String toString() {
-    return 'Apod()';
+    return 'Apod(copyRight: $copyRight, date: $date, title: $title, url: $url, hdurl: $hdurl, explanation: $explanation, mediaType: $mediaType, serviceVersion: $serviceVersion)';
   }
 }

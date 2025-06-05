@@ -18,14 +18,13 @@ class NasaController {
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
 
-      // print('response Forms Data: $responseData');
-      final Map<String, dynamic> dataParsing = responseData['form'];
-      developer.log('convert apod data to map: $dataParsing');
-      Apod data = Apod.fromMap(dataParsing);
+      developer.log('convert apod data to map: $responseData');
+      Apod data = Apod.fromMap(responseData); // no need to extract any field
 
+      developer.log(data.toString());
       return data;
     } else {
-      print('Failed to get the apod: ${response.body}');
+      developer.log('Failed to get the apod: ${response.body}');
       return null;
     }
   }

@@ -17,10 +17,8 @@ class NasaController {
 
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
-
       developer.log('convert apod data to map: $responseData');
-      Apod data = Apod.fromMap(responseData); // no need to extract any field
-
+      Apod data = Apod.fromMap(responseData); 
       developer.log(data.toString());
       return data;
     } else {
